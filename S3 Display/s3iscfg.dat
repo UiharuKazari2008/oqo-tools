@@ -1,0 +1,124 @@
+; S3ISCFG.DAT for UniChrome Family (Windows 2K/XP)
+;   Configuration options for the SETUP program.
+; The [S3Setup] section specifies overall setup behavior, and is also
+;  used if no specific section exists for the detected hardware.
+
+   ; Type: default is "Unattended"
+   ;  "UserSetup" - standard wizard-style install.
+   ;  "UserNoSelect" - like UserSetup, but no Min, Full, Custom choice.
+[S3Setup]
+;Type=UserSetup
+;Type=UserNoSelect
+Type=Unattended
+
+   ; OS: specify an exact OS requirement.  If not found, Setup will work on
+   ;   Win9x (16-bit setup) or NT/2K/XP (32-bit setup).  To require only one OS,
+   ;   specify "Win95", "Win98", "NT40", "Win2000" or "WinXP".  "Win2K or WinXP"
+   ;   will allow only Win2K or XP, not NT.
+OS=WinXP or Vista or Win2000
+
+   ; Large text in upper-left corner of setup window.  If "ProductLongName" isn't
+   ;  found, will use "ProductShortName" instead;  defaults to "S3 Driver Setup".
+   ;  If this is found, it replaces "S3" in the default text.  So if
+   ;  ProductLongName is "Savage4", then the main title is "Savage4 Driver Setup"
+   ; NOTE: "Product" should fit within 8 letters if possible, for 16-bit setups.
+ProductLongName=VIA/S3G UniChrome Family Win2K/XP/Server2003 Display
+ProductShortName=UChromeP
+
+   ; Name displayed in Add/Remove Programs, or for the uninstall icon.
+   ;   If this isn't specified, the default will be the product name followed
+   ;   by the name of any *separate* utilities.  Utils installed in a driver
+   ;   INF file don't have names we can extract easily.
+UninstName=VIA/S3G Display Driver
+
+    ; This sets up the version, and is used for some uninstalling functions.
+    ;  By default, this is "1.00.00", but should be filled in with the real
+    ;  version number of the product.
+Version=22.00.01d
+
+   ; Setup/Driver version, used for some uninstall functions.  Default is
+   ;  "1.00.00", but should be filled in with the real driver version.
+DrvINF=uc06oqo.inf
+DrvName=vtdisp.dll
+WindowsConfirmAutoOk=1
+
+   ; Use BPP/XRes/YRes to specify the desired resolution and color depth when
+   ;  installing a driver.  However, Windows may not use the supplied info if
+   ;  it can't detect monitor type.  These can also be supplied as command line
+   ;  arguments (e.g. "BPP=32 Xres=800 Yres=600")
+
+XRes=800
+YRes=480
+BPP=32
+Refresh=1
+
+   ; SetOnlyIfVga: default is 0.  If 1, Setup only uses BPP/XRes/YRes if system
+   ;  is in VGA mode.  If not in VGA mode, Setup ignores Bpp/XRes/YRes.
+SetOnlyIfVga=0
+UsePhysPanelSize=1
+
+PanelID_CR=63
+PanelCR_mask=15
+PanelX_1=800
+PanelY_1=600
+PanelX_2=1024
+PanelY_2=768
+PanelX_3=1280
+PanelY_3=768
+PanelX_5=1400
+PanelY_5=1050
+
+   ; Specify Reboot=0 to prevent setup from rebooting.  This has the same
+   ;  effect as adding "NoReboot" to command-line for setup.  ConfirmReboot=0/1
+   ;  is same as cmdline options "ConfirmReboot" or "NoConfirmReboot",
+   ;  controlling whether user is prompted before rebooting.  The default is to
+   ;  allow reboots.  If NoSilentReboot=1, then setup won't reboot if it's run
+   ;  in Silent mode (with a -s);  if 0, setup will use the "Reboot" key value.
+   ;  ConfirmSilentReboot default is 0.  Set to 1 for confirm, even in silent mode.
+Reboot=0
+ConfirmReboot=1
+;NoSilentReboot=1
+   ; Setup.exe                         Reboots, prompts for reboot
+   ; Setup.exe -s                      Silent, reboots, no reboot prompt
+
+   ; Uninstall: specifies where the user can find the uninstall option.
+   ;   Set to "Start Menu" to place it in the Start Menu, "AddRemove"
+   ;   to put it in Control Panel->Add/Remove Programs area, or "Desktop"
+   ;   to have a shortcut icon on the desktop.  Default is none.
+Uninstall=AddRemove
+UninstallUsing=s3minset
+
+   ; Default is 0. If 1, won't ask user to confirm uninstall.
+   ;   If 1, user must confirm when uninstalling.
+UninstallPrompt=1
+
+   ; Default is 0. If 1, uninstall will not show any progress dialog.
+   ;   If 0, an uninstall progress dialog will be shown.
+SilentUninstall=0
+AllowUtilUninstall=1
+
+   ; FindDeviceNum: defines which adapter to find if multiple adapters
+   ;   exist.  Default is 0 = first adapter (i.e. PCI adapters found before
+   ;   AGP).  1=2nd adapter, 2=3rd, etc. -1=last, no matter what number it is.
+FindDeviceNum = -1
+
+   ; Set ShowLicense to 1 to display license agreement in UserSetup mode.
+   ;   Defaults to not showing license.
+ShowLicense=0
+
+   ; Set "EndScreenDetail=1" to have the reboot prompt screen at the end
+   ;   detail exactly what got installed (driver, names of utilities, etc.)
+   ;   Default is to show a standard message, no details.
+EndScreenDetail=1
+
+   ; Source: either "Uncompressed" (default) or "CAB" (not supported yet).
+   ;  "Uncompressed" means all necessary files are in uncompressed format
+   ;  in source directory.  "CAB" means files are stored in an Ishield CAB file,
+   ;  and must be extracted to TEMP directory before they can be installed.
+Source=Uncompressed
+;Source=CAB
+
+   ; To have the setup program create a log file, specify that file's name here.
+   ;  The log file will always be created in the Windows directory.
+   ;  Command line argument is "LogFile=s3setup.log"
+LogFile=s3iscfg.log

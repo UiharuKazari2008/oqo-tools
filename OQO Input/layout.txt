@@ -1,0 +1,8 @@
+[RegionalSettings]
+Language = 0409
+LanguageGroup = 1
+SystemLocale = 0409
+UserLocale = 0409
+UserLocale_DefaultUser = 0409
+InputLocale = 0409:a0000409
+InputLocale_DefaultUser = 0409:a0000409

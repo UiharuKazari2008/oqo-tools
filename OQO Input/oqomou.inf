@@ -1,0 +1,122 @@
+; oqomou.inf
+;
+; Installation inf for the OQO PS/2 Mouse Filter.
+;
+; (c) Copyright 2006-2007 OQO, Inc.
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%OQO%
+ClassGUID={4D36E96F-E325-11CE-BFC1-08002BE10318}
+Class=Mouse
+CatalogFile=oqomou.cat
+DriverVer=03/29/2007, 1.0.1.0
+
+[DestinationDirs]
+DefaultDestDir   = 12
+
+;
+; Driver information
+;
+
+[Manufacturer]
+%OQO%   = OQO.Mfg, NTia64, NTamd64
+
+[OQO.Mfg]
+%OQO% = oqomou, ACPI\PNP0F13
+
+
+[OQO.Mfg.NTia64]
+%OQO% = oqomou, ACPI\PNP0F13
+
+[OQO.Mfg.NTamd64]
+%OQO% = oqomou, ACPI\PNP0F13
+
+;
+; General installation section
+;
+
+[oqomou]
+; perform port related actions from msmouse.inf
+Include=msmouse.inf
+Needs=PS2_Inst
+
+; Copy the driver over
+CopyFiles=oqomou.CopyFiles
+
+
+;
+; File sections
+;
+
+[oqomou.CopyFiles]
+oqomou.sys
+
+
+;
+; Service Installation
+;
+
+[oqomou.Services]
+AddService = oqomou,  , oqomou_Service_Inst
+; Install the port driver and mouclass from msmouse.inf
+Include=msmouse.inf
+Needs=PS2_Inst.Services
+
+[oqomou_Service_Inst]
+DisplayName    = %oqomou.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Pointer Port
+ServiceBinary  = %12%\oqomou.sys
+PointerMode    = 0
+
+[oqomou.HW]
+; Add the device upper filter
+AddReg = oqomou.HW.AddReg
+
+; run the directives need by the port driver
+Include=msmouse.inf
+Needs=PS2_Inst.HW
+
+[oqomou.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"oqomou"
+
+
+;
+; Source file information
+;
+
+; use [SourceDisksNames.x86] for x86 only installs
+; use [SourceDisksNames.alpha] for alpha only installs
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+[SourceDisksFiles]
+oqomou.sys = 1,,
+
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+DiskId1 = "OQO Mouse Driver Disk #1 (Mouse)"
+OQO = "OQO PS/2 Mouse"
+oqomou.SvcDesc="OQO PS/2 Mouse"
+

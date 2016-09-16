@@ -1,0 +1,452 @@
+; INF file for VIA/S3G UniChrome Family WinXP/2K Display Driver.
+; Copyright 2001-2005, VIA/S3G.
+
+[Version]
+Signature="$Windows NT$"
+Provider=%VIA%
+ClassGUID={4D36E968-E325-11CE-BFC1-08002BE10318}
+Class=Display
+CatalogFile=viagfx.cat
+DriverVer=03/13/2007, 6.14.10.0358
+;22.00.01d
+
+[DestinationDirs]
+DefaultDestDir   = 11
+viagfx.Miniport  = 12
+viagfx.Display   = 11
+viagfx.ICD       = 11
+DefaultUSys.Copy = 11
+DefaultUHlp.Copy = 18
+CfgSys.Copy      = 11
+CfgHlp.Copy      = 18
+TraypSys.Copy    = 11
+TraypHlp.Copy    = 18
+VTTimer.Copy     = 11
+
+
+;
+; Driver information
+;
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%VIA% = VIA.Mfg
+
+[VIA.Mfg]
+"VIA/S3G UniChrome Pro II IGP " = viagfx_3324, PCI\VEN_1106&DEV_3157
+
+;
+; General installation section
+;
+[viagfx_3324]
+FeatureScore=FC
+AddReg = viagfx.AddReg, DefaultU.AddReg, CfgNT.AddReg, TraypNT.AddReg
+DelReg = viagfx.DelReg 
+CopyFiles = viagfx.Miniport, viagfx.Display, viagfx.ICD, DefaultUHlp.Copy, DefaultUSys.Copy, VTTimer.Copy,  CfgSys.Copy, CfgHlp.Copy, TraypSys.Copy, TraypHlp.Copy
+
+;
+; Add Reg section
+;
+[viagfx.DelReg]
+HKLM,"Software\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers",viagfx,,vticd.dll
+
+[viagfx.AddReg]
+HKLM,"Software\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers\viagfx",Dll,%REG_SZ%,vticd
+HKLM,"Software\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers\viagfx",Version,%REG_DWORD%,00000002
+HKLM,"Software\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers\viagfx",DriverVersion,%REG_DWORD%,0x00000001
+HKLM,"Software\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers\viagfx",Flags,%REG_DWORD%,00000001
+
+[viagfx_3324.GeneralConfigData]
+MaximumDeviceMemoryConfiguration=64
+MaximumNumberOfDevices=4
+
+;
+; Service Installation
+;
+[viagfx_3324.Services]
+AddService = viagfx, 0x00000002 , viagfx_Service_Inst, viagfx_EventLog_Inst
+
+[viagfx_Service_Inst]
+DisplayName    = "viagfx"
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Video
+ServiceBinary  = %12%\vtmini.sys
+
+[viagfx_EventLog_Inst]
+AddReg = viagfx_EventLog_AddReg
+
+[viagfx_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%SystemRoot%\System32\IoLogMsg.dll;%SystemRoot%\System32\drivers\vtmini.sys"
+HKR,,TypesSupported,0x00010001,7
+
+;
+; Software Installation
+;
+[viagfx_3324.SoftwareSettings]
+AddReg = viagfx_SoftwareDeviceSettings
+DelReg = viagfx.Del_SoftwareDeviceSettings
+
+[viagfx_SoftwareDeviceSettings]
+HKR,, InstalledDisplayDrivers,     %REG_MULTI_SZ%, vtdisp
+HKR,, VgaCompatible,               %REG_DWORD%,    0
+HKR,, CapabilityOverride,          %REG_DWORD%,    0
+HKR,, DXVA_InSlice,                %REG_DWORD%,    1
+HKR,, DXVA_Encryption,             %REG_DWORD%,    1
+HKR,, MC_InSkipPath,               %REG_DWORD%,    1
+HKR,, CheckCaptureICOnBoard,       %REG_DWORD%,    1
+HKR,, VIPEnable,                   %REG_DWORD%,    0
+HKR,, UseSAMM,                     %REG_DWORD%,    1
+HKR,, CRTTVDuoView,                %REG_DWORD%,    1
+HKR,, ProgressiveScan,             %REG_DWORD%,    0
+HKR,, FlipEvenOnly,                %REG_DWORD%,    0
+HKR,, Overlay_Brightness,          %REG_DWORD%,    0x2ee
+HKR,, Overlay_Contrast,            %REG_DWORD%,    0x2710 
+HKR,, Overlay_Hue,                 %REG_DWORD%,    0x0
+HKR,, Overlay_Saturation,          %REG_DWORD%,    0x2710    
+HKR,, Overlay_InDuoView_toTV,      %REG_DWORD%,    1
+HKR,, OverRideMonitorPower,        %REG_DWORD%,    1
+HKR,, HQVFilterManualSelect,       %REG_DWORD%,    0
+HKR,, SupportRotation_90,          %REG_DWORD%,    1
+HKR,, SupportRotation_180,         %REG_DWORD%,    1
+HKR,, SupportRotation_270,         %REG_DWORD%,    1
+HKR,, RotationDegree,              %REG_DWORD%,    0
+HKR,, MpegHQVVFilterMode,          %REG_DWORD%,    0
+HKR,, MpegHQVHFilterMode,          %REG_DWORD%,    0
+HKR,, CapHQVVFilterMode,           %REG_DWORD%,    0
+HKR,, CapHQVHFilterMode,           %REG_DWORD%,    0
+HKR,, NoCap0HFilter,               %REG_DWORD%,    0
+HKR,, NoCap1HFilter,               %REG_DWORD%,    0
+HKR,, USE_VideoCapture,            %REG_DWORD%,    1
+HKR,, USE_Capture0or1,             %REG_DWORD%,    0
+HKR,, Cap_HQVDeinterlace,          %REG_DWORD%,    1
+HKR,, VDODecoderI2C,               %REG_DWORD%,    0x40
+HKR,, VIA_DEINTERLACE_BOB,         %REG_DWORD%,    0
+HKR,, USE_SMBus,                   %REG_DWORD%,    0
+HKR,, pnpid_cap,                   %REG_DWORD%,    0
+HKR,, TABLETPC_ROTATION_RULE,      %REG_DWORD%,    1
+HKR,, Disable_SAMM_SECONDARY_REMOVABLE,       %REG_DWORD%,    1
+HKR,, SWExpand_Enable,             %REG_DWORD%,     1
+HKR,, Enable_Cursor_Buffer_Stretch,%REG_DWORD%,    1
+HKR,, SHRINKDisableControl,%REG_DWORD%,    1
+HKR,, LCD_ShrinkEnable,     %REG_DWORD%,    1
+HKR,, ForEmbeddedCustomer,     %REG_DWORD%,    0
+HKR,, CustomAppointShrinkTable,  %REG_BINARY%,    02,00,00,00,58,02,E8,03,D0,02,B0,04
+HKR,, DisableLCDScale,             %REG_DWORD%,    1
+HKR,, Enable_Cursor_Buffer_Stretch,%REG_DWORD%,    1
+HKR,, PruningMode,                 %REG_DWORD%,    0
+
+[viagfx.Del_SoftwareDeviceSettings]
+;== TV Utility Setting
+HKR, "VIA"
+;== LCD_TV_Definitions
+HKR,, LCD.ExpandState
+HKR,, TV.ChipID
+HKR,, TV.CurrentType
+HKR,, TV.SignalType   
+
+[DefaultU.AddReg]
+;; ------------------------------------------------------------------
+;;		  		S3Display
+;; ------------------------------------------------------------------
+HKCR,CLSID\%S3DISPCLS%,,,"S3Display Property Sheet"
+HKCR,CLSID\%S3DISPCLS%\InProcServer32,,,VTDisply.dll
+HKCR,CLSID\%S3DISPCLS%\InProcServer32,ThreadingModel,,Apartment
+HKLM,%CURVER%\%CtrlFld%\Display\shellex\PropertySheetHandlers\VTDisplay,"",,%S3DISPCLS%
+HKLM,SOFTWARE\S3,
+HKLM,SOFTWARE\S3\VT,
+HKLM,%S3DSPKEY%,Installed,,1
+HKLM,%S3DSPKEY%,Filename,,VTDisply.dll
+HKLM,%S3DSPKEY%,UtilityName,,%S3DISPNAME%
+HKLM,%S3DSPKEY%,ConfigNum,,0
+HKLM,%S3DSPKEY%,URL,,http://www.s3graphics.com
+HKLM,%S3DSPKEY%,UIStyle,,Chrome
+HKLM,%S3DSPKEY%,TvLargeFont,,1
+HKLM,%S3DSPKEY%,RotateAnyModeXP,,1
+HKLM,%S3DSPKEY%,UseDevPreviousMode,,Normal
+
+;; ------------------------------------------------------------------
+;;		  		S3Gamma Plus
+;; ------------------------------------------------------------------
+HKCR,CLSID\%GM2CLSID%,,,"S3Gamma2 Property Sheet"
+HKCR,CLSID\%GM2CLSID%\InProcServer32,,,"VTGamma2.dll"
+HKCR,CLSID\%GM2CLSID%\InProcServer32,ThreadingModel,,"Apartment"
+HKLM,%CURVER%\%CtrlFld%\Display\shellex\PropertySheetHandlers\VTGamma2,"",,%GM2CLSID%
+HKLM,%S3G2KEY%,"Installed",,"1"
+HKLM,%S3G2KEY%,"Filename",,"VTGamma2.dll"
+HKLM,%S3G2KEY%,"UtilityName",,%GM2NAME%
+HKLM,%S3G2KEY%,"URL",,"http://www.s3graphics.com"
+HKLM,%S3G2KEY%,UIStyle,,Chrome
+
+;; ------------------------------------------------------------------
+;;		  		S3Info Plus
+;; ------------------------------------------------------------------
+HKCR,CLSID\%INFO2CLS%,,,"S3Info2 Property Sheet"
+HKCR,CLSID\%INFO2CLS%\InProcServer32,,,VTInfo2.dll
+HKCR,CLSID\%INFO2CLS%\InProcServer32,ThreadingModel,,Apartment
+HKLM,%CURVER%\%CtrlFld%\Display\shellex\PropertySheetHandlers\VTInfo2,"",,%INFO2CLS%
+HKLM,%INFO2KEY%,Filename,,VTInfo2.dll
+HKLM,%INFO2KEY%,URL,,http://www.s3graphics.com
+HKLM,%INFO2KEY%,UMAEnabled,,OFF
+HKLM,%INFO2KEY%,UIStyle,,Chrome
+
+;; ------------------------------------------------------------------
+;;		  		S3Overlay
+;; ------------------------------------------------------------------
+HKCR,CLSID\%OVERLAYCLS%,,,"S3Overlay Property Sheet"
+HKCR,CLSID\%OVERLAYCLS%\InProcServer32,,,VTOvrlay.dll
+HKCR,CLSID\%OVERLAYCLS%\InProcServer32,ThreadingModel,,Apartment
+HKLM,%CURVER%\%CtrlFld%\Display\shellex\PropertySheetHandlers\VTOverlay,"",,%OVERLAYCLS%
+HKLM,%OVERLAYKEY%,Filename,,VTOvrlay.dll
+HKLM,%OVERLAYKEY%,URL,,http://www.s3graphics.com
+HKLM,%OVERLAYKEY%,UIStyle,,Chrome
+
+; ---------------------------------------------------------------------
+;                               S3Timer
+; ---------------------------------------------------------------------
+HKLM,Software\Microsoft\Windows\CurrentVersion\Run,VModes,,"VModes AttachToDesktop"
+HKLM,Software\Microsoft\Windows\CurrentVersion\Run,VTTimer,,"VTTimer.exe"
+HKLM,%S3TimerKey%,NeverLaunched,,1
+
+
+;; ------------------------------------------------------------------
+;;		  		S3Config3D
+;; ------------------------------------------------------------------
+[CfgNT.AddReg]
+HKCR,CLSID\%Cfg3dCLS%,,,"S3ConfigD3D Property Sheet"
+HKCR,CLSID\%Cfg3dCLS%\InProcServer32,,,VTCfg3d.dll
+HKCR,CLSID\%Cfg3dCLS%\InProcServer32,ThreadingModel,,Apartment
+HKLM,%CURVER%\%CtrlFld%\Display\shellex\PropertySheetHandlers\VTConfig3D,"",,%Cfg3dCLS%
+HKLM,%Cfg3dKEY%,Filename,,VTCfg3d.dll
+HKLM,%Cfg3dKEY%,URL,,http://www.s3graphics.com
+HKLM,%Cfg3dKEY%,UIStyle,,Chrome
+
+;; ------------------------------------------------------------------
+;;		  		S3Tray Plus
+;; ------------------------------------------------------------------
+[TraypNT.AddReg]
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Run,VTTrayp,,"VTtrayp.exe"
+
+;
+; == File sections
+;
+
+[viagfx.Miniport]
+vtmini.sys
+
+[viagfx.Display]
+vtdisp.dll
+
+[viagfx.ICD]
+vticd.dll
+
+[DefaultUSys.Copy]
+VTDisply.cfg
+VTDispl2.cfg
+VTDispl3.cfg
+VTDisply.dll
+VTGamma2.dll
+VTGamma2.cfg
+VTGama_2.cfg
+VTInfo2.dll
+VTInfo2.cfg
+VTovrlay.dll
+VTovrlay.cfg
+VTOvrly2.cfg
+
+[DefaultUHlp.Copy]
+VTDspChs.hlp
+VTDspCht.hlp
+VTDspJpn.hlp
+VTDspKor.hlp
+VTDspWst.hlp
+VTDspTha.hlp
+VTDspWs2.hlp
+VTGm2WST.hlp
+VTGm2CHS.hlp
+VTGm2CHT.hlp
+VTGm2JPN.hlp
+VTGm2KOR.hlp
+VTGm2Tha.hlp
+VTGm2Ws2.hlp
+VTin2wst.hlp
+VTin2chs.hlp
+VTin2cht.hlp
+VTin2jpn.hlp
+VTin2kor.hlp
+VTIn2Tha.hlp
+VTin2ws2.hlp
+VTovlwst.hlp
+VTovlchs.hlp
+VTovlcht.hlp
+VTovljpn.hlp
+VTovlkor.hlp
+VTOvlTha.hlp
+VTOvlWs2.hlp
+
+[CfgSys.Copy]
+VTCfg3d.dll
+VTCfg3d.cfg
+[CfgHlp.Copy]
+VTcfgwst.hlp
+VTCfgChs.hlp
+VTCfgCht.hlp
+VTCfgJpn.hlp
+VTCfgKor.hlp
+VTCfgTha.hlp
+VTCfgWs2.hlp
+
+[TraypSys.Copy]
+VTTrayp.exe
+VTTrayp.cfg
+VTTrayP2.cfg
+[TraypHlp.Copy]
+VTtpwst.hlp
+VTTPChs.hlp
+VTTPCht.hlp
+VTTPJpn.hlp
+VTTPKor.hlp
+VTTPTha.hlp
+VTTPWs2.hlp
+
+[VTTimer.Copy]
+VTTimer.exe
+VModes.exe
+
+
+
+;
+; Source file information
+;
+
+[SourceDisksNames.x86]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+vtmini.sys   = 1
+vtdisp.dll   = 1
+vticd.dll    = 1
+
+; == S3 Display Utility
+VTDisply.cfg = 1
+VTDispl2.cfg = 1
+VTDispl3.cfg = 1
+VTDisply.dll = 1
+VTDspChs.hlp = 1
+VTDspCht.hlp = 1
+VTDspJpn.hlp = 1
+VTDspKor.hlp = 1
+VTDspWst.hlp = 1
+VTDspTha.hlp = 1
+VTDspWs2.hlp = 1
+
+; == S3Gamma2 utility
+VTGamma2.dll = 1
+VTGamma2.cfg = 1
+VTGama_2.cfg = 1
+VTGm2WST.hlp = 1
+VTGm2CHS.hlp = 1
+VTGm2CHT.hlp = 1
+VTGm2JPN.hlp = 1
+VTGm2KOR.hlp = 1
+VTGm2Tha.hlp = 1
+VTGm2Ws2.hlp = 1
+
+; == S3Info2 utility
+VTInfo2.dll  = 1
+VTInfo2.cfg  = 1
+VTin2wst.hlp = 1
+VTin2chs.hlp = 1
+VTin2cht.hlp = 1
+VTin2jpn.hlp = 1
+VTin2kor.hlp = 1
+VTIn2Tha.hlp = 1
+VTin2ws2.hlp = 1
+
+; == S3Overlay utility
+VTovrlay.dll = 1
+VTovrlay.cfg = 1
+VTOvrly2.cfg = 1
+VTovlwst.hlp = 1
+VTovlchs.hlp = 1
+VTovlcht.hlp = 1
+VTovljpn.hlp = 1
+VTovlkor.hlp = 1
+VTOvlTha.hlp = 1
+VTOvlWs2.hlp = 1
+
+; == S3Config3D utility
+VTCfg3d.dll  = 1
+VTCfg3d.cfg  = 1
+VTCfgwst.hlp = 1
+VTCfgChs.hlp = 1
+VTCfgCht.hlp = 1
+VTCfgJpn.hlp = 1
+VTCfgKor.hlp = 1
+VTCfgTha.hlp = 1
+VTCfgWs2.hlp = 1
+
+; == S3Tray Plus utility
+VTTrayp.exe  = 1
+VTTrayp.cfg  = 1
+VTTrayP2.cfg = 1
+VTTpwst.hlp  = 1
+VTTPChs.hlp  = 1
+VTTPCht.hlp  = 1
+VTTPJpn.hlp  = 1
+VTTPKor.hlp  = 1
+VTTPTha.hlp  = 1
+VTTPWs2.hlp  = 1
+
+; == others
+VTTimer.exe  = 1
+VModes.exe   = 1
+
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_MULTI_SZ   = 0x00010000
+REG_SZ         = 0x00000000
+REG_DWORD      = 0x00010001
+REG_BINARY     = 0x00000001
+;SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+DiskId1       = "VIA/S3G Display Drivers. Installation Disk #1"
+VIA           = "VIA/S3G"
+CtrlFld       = "Controls Folder"
+CURVER        = "Software\Microsoft\Windows\CurrentVersion"
+
+; For S3Display
+S3DISPCLS  = "{300b0160-6129-11d7-8dc7-00d0b72c72f7}"
+S3DISPNAME = "S3Display"
+S3DSPKEY   = "SOFTWARE\S3\VT\S3Display"
+
+; For S3Gamma2
+GM2CLSID   = "{300b0161-6129-11d7-8dc7-00d0b72c72f7}"
+GM2NAME    = "S3Gamma2"
+S3G2KEY    = "SOFTWARE\S3\VT\S3Gamma2"
+
+; For S3Info2
+INFO2CLS   = "{300b0162-6129-11d7-8dc7-00d0b72c72f7}"
+INFO2KEY   = "SOFTWARE\S3\VT\S3Info2"
+
+; For S3Overlay
+OVERLAYCLS   = "{300b0163-6129-11d7-8dc7-00d0b72c72f7}"
+OVERLAYKEY   = "SOFTWARE\S3\VT\S3Overlay"
+
+; For S3Timer
+S3TimerKey  = "SOFTWARE\S3\VT\S3Timer"
+
+; For S3Config3D
+Cfg3dCLS   = "{ba87e880-5a57-11d3-bfcb-00aa0022f394}"
+Cfg3dKEY   = "SOFTWARE\S3\VT\S3Cfg3d"

@@ -1,0 +1,26 @@
+[Models]
+HDAUDIO\FUNC_01&VEN_8384&DEV_7690=oqo_m_wrt2-1.ini 
+Default=oqo_m_wrt2-1.ini
+[Build]
+Version=2  
+Package=zip
+Password=oqo
+RootDir=Disk1
+Baseline=
+Manifest=
+Installer=5200
+coinstaller=5376\release
+setuphlp=5376\release
+stlang=5376\release
+inf=inf_vista_basic\stwrt.inf
+infwhql=5376\1233108_5376 HDA 32bit
+sttray=5376\release
+stacguicpl=5376\release
+stapi32=5376\release
+stacsv=5376\release
+WRT=5376\release
+ReplaceSetupIniLine=HDAUDIO,InstallQfe,0
+ReplaceSetupIniLine=HDAUDIO,Verify,0
+ReplaceSetupIniLine=HDAUDIO,ForceReboot,0
+ReplaceSetupIniLine=SIGMATEL,StacSysTrayName,sttray.exe
+ReplaceSetupIniLine=SIGMATEL,ForceRebootAfter,1

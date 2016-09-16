@@ -1,0 +1,120 @@
+; oqokb.inf
+;
+; Installation inf for the OQO PS/2 Keyboard Driver.
+;
+; (c) Copyright 2006-2007 OQO, Inc.
+
+[Version]
+Signature="$Windows NT$"
+Provider=%DDK_Ex%
+ClassGUID={4D36E96B-E325-11CE-BFC1-08002BE10318}
+Class=Keyboard
+
+CatalogFile=oqokb.cat
+
+DriverVer=03/29/2007, 1.0.1.0
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+;
+; Driver information
+;
+
+[Manufacturer]
+%DDK_Ex%   = DDK_Ex.Mfg, NTia64, NTamd64
+
+[DDK_Ex.Mfg]
+%DDK_Ex% = oqokb, ACPI\PNP0303
+
+[DDK_Ex.Mfg.NTia64]
+%DDK_Ex% = oqokb, ACPI\PNP0303
+
+[DDK_Ex.Mfg.NTamd64]
+%DDK_Ex% = oqokb, ACPI\PNP0303
+
+;
+; General installation section
+;
+[oqokb]
+; perform port related actions from keyboard.inf
+Include=keyboard.inf
+Needs=STANDARD_Inst
+
+; Copy the driver over
+CopyFiles=oqokb.CopyFiles
+
+
+;
+; File sections
+;
+
+[oqokb.CopyFiles]
+oqokb.sys
+
+
+;
+; Service Installation
+;
+
+[oqokb.Services]
+AddService = oqokb,  , oqokb_Service_Inst
+; Install the port driver and mouclass from keyboard.inf
+Include=keyboard.inf
+Needs=STANDARD_Inst.Services
+
+[oqokb_Service_Inst]
+DisplayName    = %oqokb.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Keyboard Port
+ServiceBinary  = %12%\oqokb.sys
+
+[oqokb.HW]
+; Add the device upper filter
+AddReg = oqokb.HW.AddReg
+
+; run the directives need by the port driver
+Include=keyboard.inf
+Needs=STANDARD_Inst.HW
+
+[oqokb.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"oqokb"
+
+
+;
+; Source file information
+;
+
+; use [SourceDisksNames.x86] for x86 only installs
+; use [SourceDisksNames.alpha] for alpha only installs
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+[SourceDisksFiles]
+oqokb.sys = 1,,
+
+
+[Strings]
+
+;
+; Non-Localizable Strings
+;
+
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+SERVICEROOT    = "System\CurrentControlSet\Services"
+
+;
+; Localizable Strings
+;
+
+DiskId1 = "OQO Keyboard Driver Disk #1 (Keyboard)"
+DDK_Ex = "OQO PS/2 Keyboard"
+oqokb.SvcDesc="OQO PS/2 Keyboard"
+

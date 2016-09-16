@@ -1,0 +1,554 @@
+#Semi Pro Installer.dat
+[MAIN]
+Languages=EN;ZHC;ZHT;FR;DE;JA;KO;IT;ES;PT;NL;SV;RU;PL
+Version=1.09.00
+MustUninstallFile=!System!\\pentablet.cpl
+CurrentInstallFile=!Program Files!\\Tablet\\installer.dat
+DialogData=.\\Strings.dat
+WINTEISD=UninstallData;StopDriverNT;Service;AddEraseDataInk;TabUserW;VHid;VKHid;ISDPEN;HIDFilter;CPL;CPLCommon;Language;Language_TE;CPLPostCommon;StartDriverTE
+RWINTEISD=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WINTE=UninstallData;StopDriverNT;Service;AddEraseDataInk;TabUserW;HIDFilter;VHid;VKHid;UseHid;CPL;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINTE=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WINNTISD=UninstallData;StopDriverNT;Service;AddEraseData;TabUserW;VHid;VKHid;ISDPEN;HIDFilter;CPL;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNTISD=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WINNTINK=UninstallData;StopDriverNT;Service;AddEraseDataInk;TabUserW;HIDFilter;VHid;VKHid;UseHid;CPL;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNTINK=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WINNT=UninstallData;StopDriverNT;Service;AddEraseData;TabUserW;PSApi;HIDFilter;VHid;VKHid;CPL;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNT=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WINTEISD64=UninstallData;StopDriverNT;Cleanup32bit;Service64;AddEraseDataInk;TabUserW64;VHid64;VKHid64;ISDPEN64;HIDFilter64;CPL64;CPLCommon;Language;Language_TE;CPLPostCommon;StartDriverTE
+RWINTEISD64=StopDriverNT;Remove64Extra;UninstallNT;RemoveDocs;RemoveFiles
+WINTE64=UninstallData;StopDriverNT;Cleanup32bit;Service64;AddEraseDataInk;TabUserW64;HIDFilter64;VHid64;VKHid64;UseHid;CPL64;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINTE64=StopDriverNT;Remove64Extra;UninstallNT;RemoveDocs;RemoveFiles
+WINNTISD64=UninstallData;StopDriverNT;Cleanup32bit;Service64;AddEraseData;TabUserW64;VHid64;VKHid64;ISDPEN64;HIDFilter64;CPL64;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNTISD64=StopDriverNT;Remove64Extra;UninstallNT;RemoveDocs;RemoveFiles
+WINNTINK64=UninstallData;StopDriverNT;Cleanup32bit;Service64;AddEraseDataInk;TabUserW64;HIDFilter64;VHid64;VKHid64;UseHid;CPL64;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNTINK64=StopDriverNT;Remove64Extra;UninstallNT;RemoveDocs;RemoveFiles
+WINNT64=UninstallData;StopDriverNT;Cleanup32bit;Service64;AddEraseData;HIDFilter64;TabUserW64;VHid64;VKHid64;CPL64;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWINNT64=StopDriverNT;Remove64Extra;UninstallNT;RemoveDocs;RemoveFiles
+WIN2K=UninstallData;StopDriverNT;Service;AddEraseData;TabUserW;PSApi;PenClass;CPL;CPLCommon;Language;CPLPostCommon;StartDriverNT
+RWIN2K=StopDriverNT;UninstallNT;RemoveDocs;RemoveFiles
+WIN9X=UninstallData;StopDriver9x;Service;AddEraseData;TabUserW;TabUserWLink;WacMouX;CPL;CPLCommon;Language;StartDriver9x;CPLPostCommon;StartTabUserW
+RWIN9X=StopDriver9x;Uninstall9x;RemoveDocs;RemoveFiles
+
+[OSSupportedFiles]
+WINTEISD=.\\System32\\Tablet.exe;.\\System32\\Drivers\\wisdpen.inf
+WINTE=.\\System32\\Tablet.exe;.\\System32\\Drivers\\wacomvhid.inf
+WINNTISD=.\\System32\\Tablet.exe;.\\System32\\Drivers\\wisdpen.inf
+WINNTINK=.\\System32\\Tablet.exe;.\\System32\\Drivers\\wacomvhid.inf
+WINNT=.\\System32\\Tablet.exe
+WINNTINK64=.\\System32\\64\\Tablet.exe;.\\System32\\64\\Drivers\\wacomvhid.inf
+WINNT64=.\\System32\\64\\Tablet.exe
+WIN2K=.\\System32\\Tablet.exe
+WIN9X=.\\System32\\Tablet.exe
+
+[PlatformData]
+SERVICEBASENT=\\SYSTEM\\CurrentControlSet\\Services\\TabletService\\PARAMETERS
+SERVICEBASE9X=\\Software\\Tablet
+SERVICEBASETE=\\Software\\Wacom\\TabletPC
+
+[CPL]
+STEP01=10;CopyFile;.\\System32\\PenTablet.cpl;!SYSTEM!\\PenTablet.cpl
+STEP02=15;CopyFile;.\\System32\\PenTablet.znc;!SYSTEM!\\PenTablet.znc
+STEP03=DONE
+
+[CPL64]
+STEP01=10;CopyFile_;.\\System32\\64\\PenTablet.cpl;!SYSTEM!\\PenTablet.cpl
+STEP02=15;CopyFile_;.\\System32\\PenTablet.znc;!SYSTEM!\\PenTablet.znc
+STEP03=DONE
+
+[CPLCommon]
+STEP01=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;DocLocation;!Program Files!\\Tablet
+STEP02=RegValueDWORD;Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Cpls\\PenTablet.cpl;RunLevel;0
+STEP03=CreateLink_;!Program Files!\\Tablet\\Remove.exe;!Common Programs!\\^Tablet^\\^PFUDialogTitle^.lnk;-1;/p
+STEP04=CopyDir;.\\Resources\\Tutorial;!Program Files!\\^Tablet^\\Tutorial
+STEP05=CopyDir;.\\Resources\\Tutorial-lang\\Common;!Program Files!\\^Tablet^\\Tutorial
+STEP06=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Cpls;Pen Tablet;!SYSTEM!\\PenTablet.cpl
+STEP07=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\System.ControlPanel.Category;!SYSTEM!\\PenTablet.cpl;0,2
+STEP08=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\{305CA226-D286-468e-B848-2B2E8E697B74} 2;!SYSTEM!\\PenTablet.cpl;0,2
+STEP09=DONE
+
+[CPLPostCommon]
+STEP01=CreateLink;!Program Files!\\^Tablet^\\Tutorial\\Tutorial.exe;!Common Programs!\\^Tablet^\\^Tutorial^.lnk
+STEP02=DONE
+
+[CPLUninstallData]
+STEP01=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;Publisher;Wacom Technology Corp.
+STEP02=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;URLInfoAbout;http:\\\\www.wacom.com\\
+STEP03=DONE
+
+[EN]
+LicenseFile=.\\Program Files\\Tablet\\English\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;EN
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;EN
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\English\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\English\\User's Manual.pdf;!Program Files!\\Tablet\\User's Manual.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\EN;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\English\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\English\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=CreateLinkFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP23=CreateLinkFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP24=LinkValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[EN_TE]
+STEP01=CopyFile;.\\Program Files\\Tablet\\English\\TabletPC\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP02=DONE
+
+[ZHC]
+LicenseFile=.\\Program Files\\Tablet\\ChineseS\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;ZHC
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;ZHC
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\ChineseS\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\ChineseS\\User's Manual-SC.pdf;!Program Files!\\Tablet\\User's Manual-SC.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual-SC.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\ZHC;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\ChineseS\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\ChineseS\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\ChineseS\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\ChineseS\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=RegValueFromFile;.\\Program Files\\Tablet\\ChineseS\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\ChineseS\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP24=DONE
+
+[ZHT]
+LicenseFile=.\\Program Files\\Tablet\\ChineseT\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;ZHT
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;ZHT
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\ChineseT\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\ChineseT\\User's Manual-TC.pdf;!Program Files!\\Tablet\\User's Manual-TC.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual-TC.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\ZHT;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\ChineseT\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\ChineseT\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\ChineseT\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\ChineseT\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=RegValueFromFile;.\\Program Files\\Tablet\\ChineseT\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\ChineseT\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP24=DONE
+
+[FR]
+LicenseFile=.\\Program Files\\Tablet\\French\\Licence.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;FR
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;FR
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\French\\Lisez-moi.rtf;!Program Files!\\Tablet\\Lisez-moi.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\French\\Manuel Utilisateur.pdf;!Program Files!\\Tablet\\Manuel Utilisateur.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Lisez-moi.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Manuel Utilisateur.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\FR;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\French\\Garantie.wri;!Program Files!\\Tablet\\Garantie.wri
+STEP12=Exist;.\\Program Files\\Tablet\\French\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\French\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\French\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\French\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\French\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\French\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\French\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[FR_TE]
+STEP01=2;CopyFile;.\\Program Files\\Tablet\\French\\TabletPC\\Lisez-moi.rtf;!Program Files!\\Tablet\\Lisez-moi.rtf
+STEP02=DONE
+
+[DE]
+LicenseFile=.\\Program Files\\Tablet\\German\\Lizenz.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;DE
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;DE
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\German\\Lies Mich.rtf;!Program Files!\\Tablet\\Lies Mich.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\German\\Benutzerhandbuch.pdf;!Program Files!\\Tablet\\Benutzerhandbuch.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Lies Mich.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Benutzerhandbuch.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\DE;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\German\\Garantie.wri;!Program Files!\\Tablet\\Garantie.wri
+STEP12=Exist;.\\Program Files\\Tablet\\German\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\German\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\German\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\German\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\German\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\German\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\German\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[DE_TE]
+STEP01=2;CopyFile;.\\Program Files\\Tablet\\German\\TabletPC\\Lies Mich.rtf;!Program Files!\\Tablet\\Lies Mich.rtf
+STEP02=DONE
+
+[JA]
+LicenseFile=.\\Program Files\\Tablet\\Japanese\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;JA
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;JA
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Japanese\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Japanese\\User's Manual-JP.pdf;!Program Files!\\Tablet\\User's Manual-JP.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual-JP.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\JA;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Japanese\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Japanese\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Japanese\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\Japanese\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=RegValueFromFile;.\\Program Files\\Tablet\\Japanese\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Japanese\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP24=DONE
+
+[JA_TE]
+STEP01=2;CopyFile;.\\Program Files\\Tablet\\Japanese\\TabletPC\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP02=DONE
+
+[KO]
+LicenseFile=.\\Program Files\\Tablet\\Korean\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;KO
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;KO
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Korean\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Korean\\User's Manual-KR.pdf;!Program Files!\\Tablet\\User's Manual-KR.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual-KR.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\KO;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Korean\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Korean\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Korean\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\Korean\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=RegValueFromFile;.\\Program Files\\Tablet\\Korean\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Korean\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP24=DONE
+
+[KO_TE]
+STEP01=2;CopyFile;.\\Program Files\\Tablet\\Korean\\TabletPC\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP02=DONE
+
+[IT]
+LicenseFile=.\\Program Files\\Tablet\\Italian\\Licenza.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;IT
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;IT
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Italian\\Leggi.rtf;!Program Files!\\Tablet\\Leggi.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Italian\\Guida per l'utente.pdf;!Program Files!\\Tablet\\Guida per l'utente.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Leggi.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Guida per l'utente.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\IT;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Italian\\Garanzia.wri;!Program Files!\\Tablet\\Garanzia.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Italian\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Italian\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[ES]
+LicenseFile=.\\Program Files\\Tablet\\Spanish\\Licencia.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;ES
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;ES
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Spanish\\Leame.rtf;!Program Files!\\Tablet\\Leame.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Spanish\\Manual del Usuario.pdf;!Program Files!\\Tablet\\Manual del Usuario.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Leame.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Manual del Usuario.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\ES;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Spanish\\Garantia.wri;!Program Files!\\Tablet\\Garantia.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Spanish\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Spanish\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[PT]
+LicenseFile=.\\Program Files\\Tablet\\Portuguese\\Licenca.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;PT
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;PT
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Portuguese\\Leiame.rtf;!Program Files!\\Tablet\\Leiame.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Portuguese\\Manual do Usuario.pdf;!Program Files!\\Tablet\\Manual do Usuario.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Leiame.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Manual do Usuario.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\PT;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Portuguese\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Portuguese\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Portuguese\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[NL]
+LicenseFile=.\\Program Files\\Tablet\\Dutch\\Licentie.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;NL
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;NL
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Dutch\\Lees mij.rtf;!Program Files!\\Tablet\\Lees mij.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Dutch\\Handleiding.pdf;!Program Files!\\Tablet\\Handleiding.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Lees mij.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Handleiding.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\NL;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Dutch\\Garantie.wri;!Program Files!\\Tablet\\Garantie.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Dutch\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Dutch\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[SV]
+LicenseFile=.\\Program Files\\Tablet\\Swedish\\Licens.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;SV
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;SV
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Swedish\\Readme.rtf;!Program Files!\\Tablet\\Readme.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Swedish\\Handbok.pdf;!Program Files!\\Tablet\\Handbok.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Readme.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Handbok.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\SV;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Swedish\\Garanti.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Swedish\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Swedish\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[RU]
+LicenseFile=.\\Program Files\\Tablet\\Russian\\Lizienzija.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;RU
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;RU
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\Russian\\Prasmatr Faijla.rtf;!Program Files!\\Tablet\\Prasmatr Faijla.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\Russian\\Manualney.pdf;!Program Files!\\Tablet\\Manualney.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Prasmatr Faijla.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\Manualney.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\RU;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\Russian\\Garantija.wri;!Program Files!\\Tablet\\Garantija.wri
+STEP12=Exist;.\\Program Files\\Tablet\\Russian\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=CreateLinkFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP21=CreateLinkFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP22=LinkValueFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP23=RegValueFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP24=RegValueFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\Russian\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[PL]
+LicenseFile=.\\Program Files\\Tablet\\English\\License.rtf
+STEP01=RegValueString;!SERVICEBASE!;BaseLanguages;EN
+STEP02=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;BaseLanguages;EN
+STEP03=2;CopyFile;.\\Program Files\\Tablet\\English\\Read Me.rtf;!Program Files!\\Tablet\\Read Me.rtf
+STEP04=22;CopyFile;.\\Program Files\\Tablet\\English\\User's Manual.pdf;!Program Files!\\Tablet\\User's Manual.pdf
+STEP05=CreateLink;!Program Files!\\Tablet\\Read Me.rtf;!Common Programs!\\^Tablet^\\^ReadMe^.lnk
+STEP06=CreateLink;!Program Files!\\Tablet\\User's Manual.pdf;!Common Programs!\\^Tablet^\\^UsersManual^.lnk
+STEP07=CopyDir;.\\Resources\\Tutorial-lang\\PL;!Program Files!\\^Tablet^\\Tutorial
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayName;^Tablet^
+STEP11=CopyFile;.\\Program Files\\Tablet\\English\\Warranty.wri;!Program Files!\\Tablet\\Warranty.wri
+STEP12=Exist;.\\Program Files\\Tablet\\English\\oem.ini;20
+STEP13=CreateLink_;!SYSTEM!\\PenTablet.cpl;!Common Programs!\\^Tablet^\\^PenTabCPLName^.lnk;0
+STEP14=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLName;^PenTabCPLName^
+STEP15=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters;PenTabCPLComment;^PenTabCPLName^
+STEP16=DONE
+STEP20=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP21=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLComment;HKEY_USERS\\.Default\\Software\\Wacom\\Parameters
+STEP22=CreateLinkFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;!Common Programs!\\^Tablet^;!System!\\PenTablet.cpl;0
+STEP23=CreateLinkFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;!Common Desktop!;!System!\\PenTablet.cpl;0
+STEP24=LinkValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;PenTabCPLName;HKEY_USERS\\.Default\\Software\\Wacom\\Links
+STEP25=RegValueFromFile;.\\Program Files\\Tablet\\English\\oem.ini;DisplayName;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP26=DONE
+
+[Service]
+STEP01=Command;!Service!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[Service64]
+STEP01=Command;!Service64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[AddEraseData]
+STEP01=Command;!AddEraseData!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[AddEraseDataInk]
+STEP01=Command;!AddEraseDataInk!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[TabUserW]
+STEP01=Command;!TabUserW!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[TabUserW64]
+STEP01=Command;!TabUserW64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[TabUserWLink]
+STEP01=Command;!TabUserWLink!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[PSApi]
+STEP01=Command;!PSApi!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[UninstallData]
+STEP01=Command;!UninstallData!;.\\Common.dat
+STEP02=Command;!CPLUninstallData!
+STEP03=DONE
+
+[ISDPEN]
+STEP01=Command;!ISDPEN!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[ISDPEN64]
+STEP01=Command;!ISDPEN64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[UseHid]
+STEP01=Command;!UseHid!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[VHid]
+STEP01=Command;!VHid!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[VHid64]
+STEP01=Command;!VHid64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[VKHid]
+STEP01=Command;!VKHid!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[VKHid64]
+STEP01=Command;!VKHid64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[PenClass]
+STEP01=Command;!PenClass!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[WacMouX]
+STEP01=Command;!WacMouX!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[HIDFilter]
+STEP01=Command;!HIDFilter!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[HIDFilter64]
+STEP01=Command;!HIDFilter64!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StartDriverTE]
+STEP01=Command;!StartDriverTE!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StartDriverNT]
+STEP01=Command;!StartDriverNT!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StartDriver9x]
+STEP01=Command;!StartDriver9x!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StartTabUserW]
+STEP01=Command;!StartTabUserW!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StopDriverNT]
+STEP01=Command;!StopDriverNT!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[StopDriver9x]
+STEP01=Command;!StopDriver9x!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[Cleanup32bit]
+STEP01=Command;!Cleanup32bit!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[RemoveDocs]
+STEP01=Command;!RemoveDocs!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[UninstallNT]
+STEP01=Command;!UninstallNT!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[Uninstall9x]
+STEP01=Command;!Uninstall9x!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[Remove64Extra]
+STEP01=Command;!Remove64Extra!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE
+
+[RemoveFiles]
+STEP01=Command;!RemoveFiles!;!Program Files!\\Tablet\\Common.dat
+STEP02=DONE

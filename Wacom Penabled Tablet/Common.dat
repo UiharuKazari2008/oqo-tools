@@ -1,0 +1,551 @@
+#Common.dat
+[PlatformData]
+SERVICEBASENT=\\SYSTEM\\CurrentControlSet\\Services\\TabletService\\PARAMETERS
+SERVICEBASE9X=\\Software\\Tablet
+SERVICEBASETE=\\SYSTEM\\CurrentControlSet\\Services\\TabletService\\PARAMETERS
+
+[Service]
+STEP01=Command;!CleanupOldService!
+STEP02=10;CopyFile;.\\System32\\Tablet.exe;!SYSTEM!\\Tablet.exe
+STEP03=Command;!CleanupOldHook!
+STEP04=7;CopyFile;.\\System32\\Wintab32.dll;!SYSTEM!\\Wintab32.dll
+STEP05=Command;!CleanupOldWintab16!
+STEP06=Command;!ZoomData!;.\\System32\\Zoom.dat
+STEP07=Exist;!Program Files!\\Tablet\\PenInst.dll;10
+STEP08=CopyFile;.\\System32\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP09=1;CopyOEMINF;.\\System32\\Drivers\\wtablet.inf
+STEP10=Command;!ISDCOM_NODRIVER!;.\\System32\\isdoem.dat
+STEP11=DONE
+
+[Service64]
+STEP01=Command;!CleanupOldService!
+STEP02=11;CopyFile_;.\\System32\\64\\Tablet.exe;!SYSTEM!\\Tablet.exe
+STEP03=Command;!CleanupOldHook!
+STEP04=5;CopyFile_;.\\System32\\64\\Wintab32.dll;!SYSTEM!\\Wintab32.dll
+STEP05=5;CopyFile;.\\System32\\64\\32\\Wintab32.dll;!SYSTEM!\\Wintab32.dll
+STEP06=Command;!ZoomData!;.\\System32\\Zoom.dat
+STEP07=DONE
+
+[AddEraseData]
+STEP01=Command;!EraseData!;.\\System32\\Eraser.dat
+STEP02=DONE
+
+[AddEraseDataInk]
+STEP01=Command;!EraseDataInk!;.\\System32\\Eraser.dat
+STEP02=DONE
+
+[TabUserW]
+STEP01=Command;!CleanupOldFUM!
+STEP02=8;CopyFile;.\\System32\\TabUserW.exe;!SYSTEM!\\WTablet\\TabUserW.exe
+STEP03=DONE
+
+[TabUserW64]
+STEP01=Command;!CleanupOldFUM!
+STEP02=8;CopyFile_;.\\System32\\64\\TabUserW.exe;!SYSTEM!\\WTablet\\TabUserW.exe
+STEP03=DONE
+
+[TabUserWLink]
+STEP01=CreateLink_;!SYSTEM!\\WTablet\\TabUserW.exe;!Startup Folder!\\TabUserW.exe.lnk
+STEP02=DONE
+
+[PSApi]
+STEP01=Exist;!SYSTEM!\\psapi.dll;4
+STEP02=Exist;!WINDOWS!\\system\\psapi.dll;4
+STEP03=1;CopyFile;.\\System32\\psapi.dll;!WINDOWS!\\system\\psapi.dll
+STEP04=DONE
+
+[UninstallData]
+STEP01=Command;!CleanupOldUninstall!
+STEP02=1;CopyFile;.\\Setup.exe;!Program Files!\\Tablet\\Remove.exe
+STEP03=1;CopyFile;.\\Installer.dat;!Program Files!\\Tablet\\Installer.dat
+STEP04=1;CopyFile;.\\Strings.dat;!Program Files!\\Tablet\\Strings.dat
+STEP05=1;CopyFile;.\\Common.dat;!Program Files!\\Tablet\\Common.dat
+STEP06=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;DisplayIcon;!Program Files!\\Tablet\\Remove.exe,2
+STEP07=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;UninstallString;!Program Files!\\Tablet\\Remove.exe /u
+STEP08=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;UninstallPath;!Program Files!\\Tablet
+STEP09=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;ModifyPath;!Program Files!\\Tablet\\Remove /p
+STEP10=RegValueDWORD;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;NoModify;0
+STEP11=RegValueDWORD;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver;NoRepair;1
+STEP12=DONE
+
+[ISDPEN]
+STEP01=CopyFile;.\\System32\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP02=CopyFile;.\\System32\\Drivers\\wisdpen.inf;!Program Files!\\Tablet\\wisdpen.inf
+STEP03=CopyFile;.\\System32\\Drivers\\wisdpen.cat;!Program Files!\\Tablet\\wisdpen.cat
+STEP04=CopyFile;.\\System32\\Drivers\\wisdpen.sys;!Program Files!\\Tablet\\wisdpen.sys
+STEP05=InstallWISDPen;!Program Files!\\Tablet\\PenInst.dll;!Program Files!\\Tablet\\wisdpen.inf
+STEP06=DONE
+
+[ISDPEN64]
+STEP01=CopyFile;.\\System32\\64\\Drivers\\DevInst.exe;!Program Files!\\Tablet\\DevInst.exe
+STEP02=CopyFile;.\\System32\\64\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP03=CopyFile;.\\System32\\64\\Drivers\\wisdpen.inf;!Program Files!\\Tablet\\wisdpen.inf
+STEP04=CopyFile;.\\System32\\64\\Drivers\\wisdpen.cat;!Program Files!\\Tablet\\wisdpen.cat
+STEP05=CopyFile;.\\System32\\64\\Drivers\\wisdpen.sys;!Program Files!\\Tablet\\wisdpen.sys
+STEP06=InstallWISDPen;!Program Files!\\Tablet\\DevInst.exe;!Program Files!\\Tablet\\wisdpen.inf
+STEP07=DONE
+
+[UseHid]
+STEP01=RegValueDWORD;!SERVICEBASE!;UseHid;2
+STEP02=DONE
+
+[UsePen]
+STEP01=RegValueDWORD;!SERVICEBASE!;UsePen;1
+STEP02=DONE
+
+[AddNanaoReg]
+STEP01=RegValueDWORD;!SERVICEBASE!;TargetOffset;200
+STEP02=RegValueDWORD;!SERVICEBASE!;DefaultPortrait;2
+STEP03=DONE
+
+[CleanVHID]
+STEP01=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVIRTUALHID&Col04
+STEP02=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACVIRTUALHID&Col04
+STEP03=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVIRTUALHID
+STEP04=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACVIRTUALHID
+STEP05=DeleteFile;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP06=DONE
+
+[VHid]
+STEP01=CopyFile;.\\System32\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP02=CopyFile;.\\System32\\Drivers\\wacomvhid.inf;!Program Files!\\Tablet\\wacomvhid.inf
+STEP03=CopyFile;.\\System32\\Drivers\\wacomvhid.sys;!Program Files!\\Tablet\\wacomvhid.sys
+STEP04=CopyFile;.\\System32\\Drivers\\wacomvhid.cat;!Program Files!\\Tablet\\wacomvhid.cat
+STEP05=CopyFile;.\\System32\\Drivers\\wacommousefilter.cat;!Program Files!\\Tablet\\wacommousefilter.cat
+STEP06=CopyFile;.\\System32\\Drivers\\wacommousefilter.inf;!Program Files!\\Tablet\\wacommousefilter.inf
+STEP07=CopyFile;.\\System32\\Drivers\\wacommousefilter.sys;!Program Files!\\Tablet\\wacommousefilter.sys
+STEP08=Exist;!SYSTEM!\\Drivers\\wacomvhid.sys;!CleanVHid!
+STEP09=DevInstall;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVIRTUALHID;!Program Files!\\Tablet\\wacomvhid.inf
+STEP10=ChangeFriendlyName;!Program Files!\\Tablet\\PenInst.dll;1; 13; 1;Wacom HID Digitizer
+STEP11=ChangeFriendlyName;!Program Files!\\Tablet\\PenInst.dll;1; 13; 2;Wacom HID Pen
+STEP12=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVIRTUALHID&Col03;!Program Files!\\Tablet\\wacommousefilter.inf
+STEP13=DONE
+
+[CleanVHID64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACOMVIRTUALHID&Col04
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACVIRTUALHID&Col04
+STEP03=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACOMVIRTUALHID
+STEP04=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACVIRTUALHID
+STEP05=DeleteFile_;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP06=DONE
+
+[VHid64]
+STEP01=CopyFile;.\\System32\\64\\Drivers\\DevInst.exe;!Program Files!\\Tablet\\DevInst.exe
+STEP02=CopyFile;.\\System32\\64\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP03=CopyFile;.\\System32\\64\\Drivers\\wacomvhid.inf;!Program Files!\\Tablet\\wacomvhid.inf
+STEP04=CopyFile;.\\System32\\64\\Drivers\\wacomvhid.sys;!Program Files!\\Tablet\\wacomvhid.sys
+STEP05=CopyFile;.\\System32\\64\\Drivers\\wacomvhid.cat;!Program Files!\\Tablet\\wacomvhid.cat
+STEP06=CopyFile;.\\System32\\64\\Drivers\\wacommousefilter.cat;!Program Files!\\Tablet\\wacommousefilter.cat
+STEP07=CopyFile;.\\System32\\64\\Drivers\\wacommousefilter.inf;!Program Files!\\Tablet\\wacommousefilter.inf
+STEP08=CopyFile;.\\System32\\64\\Drivers\\wacommousefilter.sys;!Program Files!\\Tablet\\wacommousefilter.sys
+STEP09=Exist_;!SYSTEM!\\Drivers\\wacomvhid.sys;!CleanVHid64!
+STEP10=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Install ROOT\\WACOMVIRTUALHID wacomvhid.inf
+STEP11=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;ChangeFriendlyName 1 13 1 "Wacom HID Digitizer"
+STEP12=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;ChangeFriendlyName 1 13 2 "Wacom HID Pen"
+STEP13=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update HID\\WACOMVIRTUALHID&Col03 wacommousefilter.inf
+STEP14=DONE
+
+[CleanVKHID]
+STEP01=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVKHID&Col02
+STEP02=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVKHID
+STEP03=DeleteFile;!SYSTEM!\\Drivers\\WacomVKHid.sys
+STEP04=DONE
+
+[VKHid]
+STEP01=CopyFile;.\\System32\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP02=CopyFile;.\\System32\\Drivers\\wacomvkhid.inf;!Program Files!\\Tablet\\wacomvkhid.inf
+STEP03=CopyFile;.\\System32\\Drivers\\wacomvkhid.sys;!Program Files!\\Tablet\\wacomvkhid.sys
+STEP04=CopyFile;.\\System32\\Drivers\\wacomvkhid.cat;!Program Files!\\Tablet\\wacomvkhid.cat
+STEP05=Exist;!SYSTEM!\\Drivers\\wacomvkhid.sys;!CleanVKHid!
+STEP06=DevInstall;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVKHID;!Program Files!\\Tablet\\wacomvkhid.inf
+STEP07=ChangeFriendlyName;!Program Files!\\Tablet\\PenInst.dll;3; 1; 6;Virtual Keyboard
+STEP08=ChangeFriendlyName;!Program Files!\\Tablet\\PenInst.dll;3; 12; 1;Virtual Media Keys
+STEP09=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVKHID&Col01;!Program Files!\\Tablet\\wacomvkhid.inf
+STEP10=DONE
+
+[CleanVKHID64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACOMVKHID&Col02
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACOMVKHID
+STEP03=DeleteFile_;!SYSTEM!\\Drivers\\WacomVKHid.sys
+STEP04=DONE
+
+[VKHid64]
+STEP01=CopyFile;.\\System32\\64\\Drivers\\DevInst.exe;!Program Files!\\Tablet\\DevInst.exe
+STEP02=CopyFile;.\\System32\\64\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP03=CopyFile;.\\System32\\64\\Drivers\\wacomvkhid.inf;!Program Files!\\Tablet\\wacomvkhid.inf
+STEP04=CopyFile;.\\System32\\64\\Drivers\\wacomvkhid.sys;!Program Files!\\Tablet\\wacomvkhid.sys
+STEP05=CopyFile;.\\System32\\64\\Drivers\\wacomvkhid.cat;!Program Files!\\Tablet\\wacomvkhid.cat
+STEP06=Exist_;!SYSTEM!\\Drivers\\wacomvkhid.sys;!CleanVKHid64!
+STEP07=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Install ROOT\\WACOMVKHID wacomvkhid.inf
+STEP08=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;ChangeFriendlyName 3 1 6 "Virtual Keyboard"
+STEP09=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;ChangeFriendlyName 3 12 1 "Virtual Media Keys"
+STEP10=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update HID\\WACOMVKHID&Col01 wacomvkhid.inf
+STEP11=DONE
+
+[PenClass]
+STEP01=2;CopyFile;.\\System32\\Drivers\\PenClass.sys;!SYSTEM!\\Drivers\\PenClass.sys
+STEP02=5;InstallPenClass;!SYSTEM!\\Drivers\\PenClass.sys;0
+STEP03=DONE
+
+[WacMouX]
+STEP01=2;CopyFile;.\\System32\\WacMouX.vxd;!SYSTEM!\\WacMouX.vxd
+STEP02=DONE
+
+[HIDFilter]
+STEP01=CopyFile;.\\System32\\Drivers\\PenInst.dll;!Program Files!\\Tablet\\PenInst.dll
+STEP02=CopyFile;.\\System32\\Drivers\\wacomhidfilter.inf;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP03=CopyFile;.\\System32\\Drivers\\wacomhidfilter.sys;!Program Files!\\Tablet\\wacomhidfilter.sys
+STEP04=CopyFile;.\\System32\\Drivers\\wacomhidfilter.cat;!Program Files!\\Tablet\\wacomhidfilter.cat
+STEP05=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;USB\\VID_056A&PID_0003;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP06=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;USB\\VID_056A&PID_0000;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP07=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;USB\\VID_056A&PID_0400;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP08=DevUpdate;!Program Files!\\Tablet\\PenInst.dll;USB\\VID_056A&PID_0090;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP09=DONE
+
+[HIDFilter64]
+STEP01=CopyFile;.\\System32\\64\\Drivers\\DevInst.exe;!Program Files!\\Tablet\\DevInst.exe
+STEP02=CopyFile;.\\System32\\64\\Drivers\\wacomhidfilter.inf;!Program Files!\\Tablet\\wacomhidfilter.inf
+STEP03=CopyFile;.\\System32\\64\\Drivers\\wacomhidfilter.sys;!Program Files!\\Tablet\\wacomhidfilter.sys
+STEP04=CopyFile;.\\System32\\64\\Drivers\\wacomhidfilter.cat;!Program Files!\\Tablet\\wacomhidfilter.cat
+STEP05=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update USB\\VID_056A&PID_0003 wacomhidfilter.inf
+STEP06=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update USB\\VID_056A&PID_0000 wacomhidfilter.inf
+STEP07=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update USB\\VID_056A&PID_0400 wacomhidfilter.inf
+STEP08=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Update USB\\VID_056A&PID_0090 wacomhidfilter.inf
+STEP09=DONE
+
+[StartDriverTE]
+STEP01=1;Execute_;100;!SYSTEM!\\Tablet.exe;i
+STEP02=1;Execute_;200;!SYSTEM!\\Tablet.exe;s
+STEP03=DONE
+
+[StartDriverNT]
+STEP01=1;Execute_;100;!SYSTEM!\\Tablet.exe;i
+STEP02=1;Execute_;300;!SYSTEM!\\Tablet.exe;s
+STEP03=DONE
+
+[StartDriver9x]
+STEP01=1;RegValueString;\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunServices;Tablet;!SYSTEM!\\Tablet.exe
+STEP02=1;Execute;100;!SYSTEM!\\Tablet.exe;i
+STEP03=1;Execute;200;!SYSTEM!\\Tablet.exe
+STEP04=DONE
+
+[StartTabUserW]
+STEP01=1;Execute_;50;!SYSTEM!\\WTablet\\TabUserW.exe
+STEP02=DONE
+
+[StopDriverNT]
+STEP01=1;StopTabletService
+STEP02=Delay;1000
+STEP03=DONE
+
+[StopDriver9x]
+STEP01=1;Execute;300;!SYSTEM!\\Tablet.exe;q
+STEP02=DONE
+
+[CleanupOldService]
+STEP01=RegValueString;System\\CurrentControlSet\\Services\\WISDPen\\Prefs;UseHid
+STEP02=RegValueString;System\\CurrentControlSet\\Services\\WacomISDPen\\Prefs;UseHid
+STEP03=RegValueString;System\\CurrentControlSet\\Services\\WacomVHidPen\\Prefs;UseHid
+STEP04=RegValueString;!SERVICEBASE!;UseHid
+STEP05=DONE
+
+[CleanupOldHook]
+STEP01=DeleteFile;!SYSTEM!\\HookDll.dll
+STEP02=DeleteFile;!SYSTEM!\\TabHook.dll
+STEP03=DONE
+
+[CleanupOldFUM]
+STEP01=DeleteFile;!Startup Folder!\\TabUserW.lnk
+STEP02=DeleteFile;!Program Files!\\Wacom\\TabUserW.exe
+STEP03=DeleteFile;!Program Files!\\Tablet\\TabUserW.exe
+STEP04=DeleteFile;!SYSTEM!\\TabUserW.exe
+STEP05=DONE
+
+[CleanupOldUninstall]
+STEP01=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Controlador de la tableta Wacom
+STEP02=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Treiber fÅE das Wacom Tablett
+STEP03=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Driver tavoletta Wacom
+STEP04=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\øÕƒﬁ ≈∏∫˙”ø µÂ∂Û¿ÃπÅE
+STEP05=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Wacomtablet-driver
+STEP06=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Pilote de tablette Wacom
+STEP07=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Wacomº∆¶ÅEO≈X∞ µ{¶°
+STEP08=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Driver da Mesa Gr·fica Wacom
+STEP09=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Wacom ˝Œª∞Â«˝∂Ø≥Ã–ÅE
+STEP10=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\É^ÉuÉåÉbÉgÉhÉâÉCÉo
+STEP11=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Wacom Tablet Driver
+STEP12=DONE
+
+[CleanupOldPenClass]
+STEP01=Exist;!SYSTEM!\\Drivers\\PenClass.sys;!RemovePenClass!
+STEP02=DONE
+
+[CleanupOldWintab16]
+STEP01=DeleteFile;!SYSTEM!\\Wintab.dll
+STEP02=DONE
+
+[Cleanup32bit]
+STEP01=Execute;100;!SYSTEM!\\Tablet.exe;u
+STEP02=DeleteFile;!SYSTEM!\\Tablet.exe
+STEP03=DeleteFile;!SYSTEM!\\Wintab32.dll
+STEP04=DeleteFile;!SYSTEM!\\Wintab.dll
+STEP05=DeleteFile;!SYSTEM!\\WacomTablet.cpl
+STEP06=DeleteFile;!SYSTEM!\\WacomTablet.znc
+STEP07=DeleteFile;!SYSTEM!\\PenTablet.cpl
+STEP08=DeleteFile;!SYSTEM!\\PenTablet.znc
+STEP09=DeleteFile;!SYSTEM!\\Tablet.cpl
+STEP10=DeleteFile;!SYSTEM!\\Tablet.znc
+STEP11=DeleteFile;!SYSTEM!\\Wacom.cpl
+STEP12=DeleteFile;!SYSTEM!\\TabCP-CS.znc
+STEP13=DeleteFile;!SYSTEM!\\TabCP-CT.znc
+STEP14=DeleteFile;!SYSTEM!\\TabCP-De.znc
+STEP15=DeleteFile;!SYSTEM!\\TabCP-En.znc
+STEP16=DeleteFile;!SYSTEM!\\TabCP-ES.znc
+STEP17=DeleteFile;!SYSTEM!\\TabCP-Fr.znc
+STEP18=DeleteFile;!SYSTEM!\\TabCP-It.znc
+STEP19=DeleteFile;!SYSTEM!\\TabCP-Jp.znc
+STEP20=DeleteFile;!SYSTEM!\\TabCP-Kr.znc
+STEP21=DeleteFile;!SYSTEM!\\TabCP-Nl.znc
+STEP22=DeleteFile;!SYSTEM!\\TabCP-Pr.znc
+STEP23=DeleteFile;!Startup Folder!\\TabUserW.exe.lnk
+STEP24=DeleteFile;!SYSTEM!\\WTablet\\TabUserW.exe
+STEP25=DeleteDir;!SYSTEM!\\WTablet
+STEP26=Exist;!SYSTEM!\\Drivers\\PenClass.sys;!RemovePenClass!
+STEP27=DONE
+
+[RemoveDocs]
+STEP01=1;DeleteCustomLink;!Common Desktop!;HKEY_USERS\\.Default\\Software\\Wacom\\Links;OEMCPLName
+STEP02=DeleteCustomLink;!Common Desktop!;HKEY_USERS\\.Default\\Software\\Wacom\\Links;PenTabCPLName
+STEP03=RegValueString;HKEY_USERS\\.Default\\Software\\Wacom
+STEP04=RegValueString;!SERVICEBASE!
+STEP05=1;DeleteDirContents;!Common Programs!\\Wacom
+STEP06=DeleteDir;!Common Programs!\\Wacom
+STEP07=1;DeleteDirContents;!Program Files!\\^Tablet^\\^Tutorial^
+STEP08=DeleteDir;!Program Files!\\^Tablet^\\^Tutorial^
+STEP09=1;DeleteDirContents;!Program Files!\\^Tablet^\\Tutorial
+STEP10=DeleteDir;!Program Files!\\^Tablet^\\Tutorial
+STEP11=1;DeleteDirContents;!Program Files!\\^Tablet^
+STEP12=DeleteDir;!Program Files!\\^Tablet^
+STEP13=1;DeleteDirContents;!Common Programs!\\^Tablet^
+STEP14=DeleteDir;!Common Programs!\\^Tablet^
+STEP15=1;DeleteDirContents;!Program Files!\\Wacom Tablet
+STEP16=DeleteDir;!Program Files!\\^WacomTablet^
+STEP17=1;DeleteDirContents;!Common Programs!\\^WacomTablet^
+STEP18=DeleteDir;!Common Programs!\\^WacomTablet^
+STEP19=DONE
+
+[UninstallNT]
+STEP01=2;Execute_;100;!SYSTEM!\\Tablet.exe;u
+STEP02=RegValueString;System\\CurrentControlSet\\Services\\Wacom
+STEP03=Exist;!SYSTEM!\\Drivers\\PenClass.sys;!RemovePenClass!
+STEP04=Exist;!SYSTEM!\\Drivers\\wisdpen.sys;!RemoveWISDPen!
+STEP05=Exist;!SYSTEM!\\Drivers\\wacomisdpen.sys;!RemoveWacISDPen!
+STEP06=Exist;!SYSTEM!\\Drivers\\WacomVHidPen.sys;!RemoveWacHidPen!
+STEP07=RegValueString;!SERVICEBASE!;UseHid
+STEP08=Exist;!SYSTEM!\\Drivers\\wacomvhid.sys;!RemoveWacomVirtualHid!
+STEP09=Exist;!SYSTEM!\\Drivers\\wacomvkhid.sys;!RemoveWacomVKHid!
+STEP10=Exist;!SYSTEM!\\Drivers\\wacomvthid.sys;!RemoveWacomVTHid!
+STEP11=RegValueString;System\\CurrentControlSet\\Services\\WacomVHid
+STEP12=RegValueString;System\\CurrentControlSet\\Services\\WacomVKHid
+STEP13=RegValueString;System\\CurrentControlSet\\Services\\WacomVTHid
+STEP14=RegValueString;System\\CurrentControlSet\\Services\\WacomMouseFilter
+STEP15=Exist;!SYSTEM!\\Drivers\\wacomhidfilter.sys;!RemoveHIDFilter!
+STEP16=DeleteFile;!Program Files!\\Tablet\\wacommousefilter.inf
+STEP17=DeleteFile;!Program Files!\\Tablet\\wacommousefilter.sys
+STEP18=DeleteFile;!Program Files!\\Tablet\\wacomvhid.inf
+STEP19=DeleteFile;!Program Files!\\Tablet\\wacomvkhid.inf
+STEP20=DeleteFile;!Program Files!\\Tablet\\wacomvhid.sys
+STEP21=DeleteFile;!Program Files!\\Tablet\\wacomvthid.sys
+STEP22=DeleteFile;!Program Files!\\Tablet\\DevInst.exe
+STEP23=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;WTABLET.INF
+STEP24=DeleteFile;!Program Files!\\Tablet\\PenInst.dll
+STEP25=DeleteFile;!SYSTEM!\\wacomtouchservice.exe
+STEP26=DeleteFile;!SYSTEM!\\wacomtouchcal.cpl
+STEP27=DONE
+
+[Uninstall9x]
+STEP01=2;Execute;100;!SYSTEM!\\Tablet.exe;u
+STEP02=1;DeleteFile;!SYSTEM!\\WacMouX.vxd
+STEP03=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;WTABLET.INF
+STEP04=DeleteFile;!Program Files!\\Tablet\\PenInst.dll
+STEP05=DONE
+
+[RemovePenClass]
+STEP01=RemovePenClass
+STEP02=DeleteFile;!SYSTEM!\\Drivers\\PenClass.sys
+STEP03=RegValueString;System\\CurrentControlSet\\Services\\PenClass
+STEP04=DONE
+
+[RemoveWISDPen]
+STEP01=RegValueString;!SERVICEBASE!;UseHid
+STEP02=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wisdpen.INF
+STEP03=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wtpfiltr.inf
+STEP04=RemoveWISDPen;!Program Files!\\Tablet\\PenInst.dll
+STEP05=DeleteFile;!SYSTEM!\\Drivers\\wisdpen.sys
+STEP06=RegValueString;System\\CurrentControlSet\\Services\\WISDPen
+STEP07=DONE
+
+[RemoveWacISDPen]
+STEP01=RegValueString;!SERVICEBASE!;UseHid
+STEP02=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacomisdpen.INF
+STEP03=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wtpfiltr.inf
+STEP04=RemoveWacISDPen;!Program Files!\\Tablet\\PenInst.dll
+STEP05=DeleteFile;!SYSTEM!\\Drivers\\wacomisdpen.sys
+STEP06=RegValueString;System\\CurrentControlSet\\Services\\WacomISDPen
+STEP07=DONE
+
+[RemoveWISDPen64]
+STEP01=RegValueString;!SERVICEBASE!;UseHid
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wisdpen.INF
+STEP03=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wtpfiltr.inf
+STEP04=RemoveWISDPen;!Program Files!\\Tablet\\DevInst.exe
+STEP05=DeleteFile;!SYSTEM!\\Drivers\\wisdpen.sys
+STEP06=RegValueString;System\\CurrentControlSet\\Services\\WISDPen
+STEP07=DONE
+
+[RemoveWacHidPen]
+STEP01=RegValueString;!SERVICEBASE!;UseHid
+STEP02=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;WacVHidPen.INF
+STEP03=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\VirtualHidPen
+STEP04=DeleteFile;!SYSTEM!\\Drivers\\WacomVHidPen.sys
+STEP05=RegValueString;System\\CurrentControlSet\\Services\\WacomVHidPen
+STEP06=DONE
+
+[RemoveWacVHid]
+STEP01=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacomvhid.INF
+STEP02=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACVIRTUALHID
+STEP03=DeleteFile;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP04=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacommousefilter.inf
+STEP05=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACVIRTUALHID&Col04
+STEP06=DeleteFile;!SYSTEM!\\Drivers\\wacommousefilter.sys
+STEP07=DONE
+
+[RemoveWacVHid64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacomvhid.INF
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACVIRTUALHID
+STEP03=DeleteFile_;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP04=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacommousefilter.inf
+STEP05=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACVIRTUALHID&Col04
+STEP06=DeleteFile_;!SYSTEM!\\Drivers\\wacommousefilter.sys
+STEP07=DONE
+
+[RemoveWacomVirtualHid]
+STEP01=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacomvhid.INF
+STEP02=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVIRTUALHID
+STEP03=DeleteFile;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP04=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacommousefilter.inf
+STEP05=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVIRTUALHID&Col04
+STEP06=DeleteFile;!SYSTEM!\\Drivers\\wacommousefilter.sys
+STEP07=DONE
+
+[RemoveWacomVirtualHid64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacomvhid.INF
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACOMVIRTUALHID
+STEP03=DeleteFile_;!SYSTEM!\\Drivers\\WacomVHid.sys
+STEP04=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacommousefilter.inf
+STEP05=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACOMVIRTUALHID&Col04
+STEP06=DeleteFile_;!SYSTEM!\\Drivers\\wacommousefilter.sys
+STEP07=DONE
+
+[RemoveWacomVKHid]
+STEP01=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacomvkhid.INF
+STEP02=DevRemove;!Program Files!\\Tablet\\PenInst.dll;HID\\WACOMVKHID&Col02
+STEP03=DevRemove;!Program Files!\\Tablet\\PenInst.dll;ROOT\\WACOMVKHID
+STEP04=DeleteFile;!SYSTEM!\\Drivers\\WacomVKHid.sys
+STEP05=DONE
+
+[RemoveWacomVKHid64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacomvkhid.INF
+STEP02=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove HID\\WACOMVKHID&Col02
+STEP03=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;Remove ROOT\\WACOMVKHID
+STEP04=DeleteFile_;!SYSTEM!\\Drivers\\WacomVKHid.sys
+STEP05=DONE
+
+[RemoveHidFilter]
+STEP01=DevRemoveOEMINF;!Program Files!\\Tablet\\PenInst.dll;wacomhidfilter.inf
+STEP02=RemoveHIDFilter;!Program Files!\\Tablet\\PenInst.dll
+STEP03=DeleteFile;!SYSTEM!\\Drivers\\wacomhidfilter.sys
+STEP04=RegValueString;!SERVICEBASE!;UsePen
+STEP05=RegValueDWORD;!SERVICEBASE!;TargetOffset
+STEP06=RegValueDWORD;!SERVICEBASE!;DefaultPortrait
+STEP07=DONE
+
+[RemoveHidFilter64]
+STEP01=1;Execute;1000;!Program Files!\\Tablet\\DevInst.exe;RemoveOEMInf wacomhidfilter.inf
+STEP02=RemoveHIDFilter;!Program Files!\\Tablet\\DevInst.exe
+STEP03=DeleteFile;!SYSTEM!\\Drivers\\wacomhidfilter.sys
+STEP04=RegValueString;!SERVICEBASE!;UsePen
+STEP05=RegValueDWORD;!SERVICEBASE!;TargetOffset
+STEP06=RegValueDWORD;!SERVICEBASE!;DefaultPortrait
+STEP07=DONE
+
+[RemoveCPL]
+STEP01=1;DeleteFile_;!SYSTEM!\\WacomTablet.cpl
+STEP02=1;DeleteFile_;!SYSTEM!\\WacomTablet.znc
+STEP03=1;DeleteFile_;!SYSTEM!\\PenTablet.cpl
+STEP04=1;DeleteFile_;!SYSTEM!\\PenTablet.znc
+STEP05=1;DeleteFile_;!SYSTEM!\\Tablet.cpl
+STEP06=1;DeleteFile_;!SYSTEM!\\Tablet.znc
+STEP07=DeleteFile_;!SYSTEM!\\Wacom.cpl
+STEP08=DeleteFile_;!SYSTEM!\\TabCP-CS.znc
+STEP09=DeleteFile_;!SYSTEM!\\TabCP-CT.znc
+STEP10=DeleteFile_;!SYSTEM!\\TabCP-De.znc
+STEP11=DeleteFile_;!SYSTEM!\\TabCP-En.znc
+STEP12=DeleteFile_;!SYSTEM!\\TabCP-ES.znc
+STEP13=DeleteFile_;!SYSTEM!\\TabCP-Fr.znc
+STEP14=DeleteFile_;!SYSTEM!\\TabCP-It.znc
+STEP15=DeleteFile_;!SYSTEM!\\TabCP-Jp.znc
+STEP16=DeleteFile_;!SYSTEM!\\TabCP-Kr.znc
+STEP17=DeleteFile_;!SYSTEM!\\TabCP-Nl.znc
+STEP18=DeleteFile_;!SYSTEM!\\TabCP-Pr.znc
+STEP19=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Cpls\\WacomTablet.cpl
+STEP20=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Cpls;Wacom Tablet
+STEP21=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Cpls;Pen Tablet
+STEP22=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\{305CA226-D286-468e-B848-2B2E8E697B74} 2;!SYSTEM!\\WacomTablet.cpl
+STEP23=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\{305CA226-D286-468e-B848-2B2E8E697B74} 2;!SYSTEM!\\PenTablet.cpl
+STEP24=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\System.ControlPanel.Category;!SYSTEM!\\WacomTablet.cpl
+STEP25=RegValueString;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Control Panel\\Extended Properties\\System.ControlPanel.Category;!SYSTEM!\\PenTablet.cpl
+STEP26=DONE
+
+[RemoveService]
+STEP01=1;DeleteFile_;!SYSTEM!\\Tablet.exe
+STEP02=1;DeleteFile_;!SYSTEM!\\Tablet.dat
+STEP03=1;DeleteFile_;!SYSTEM!\\TabHook.dll
+STEP04=1;DeleteFile_;!SYSTEM!\\Wintab32.dll
+STEP05=DeleteAllPrefs
+STEP06=DONE
+
+[RemoveFUM]
+STEP01=1;DeleteFile_;!Startup Folder!\\TabUserW.exe.lnk
+STEP02=1;DeleteFile_;!SYSTEM!\\WTablet\\TabUserW.exe
+STEP03=DeleteDir_;!SYSTEM!\\WTablet
+STEP04=DONE
+
+[Remove64Extra]
+STEP01=1;DeleteFile;!SYSTEM!\\Wintab32.dll
+STEP02=RegValueString;!SERVICEBASE!;UseHid
+STEP03=Exist_;!SYSTEM!\\Drivers\\wacomvhid.sys;!RemoveWacomVirtualHid64!
+STEP04=Exist_;!SYSTEM!\\Drivers\\wacomvkhid.sys;!RemoveWacomVKHid64!
+STEP05=RegValueString;System\\CurrentControlSet\\Services\\WacomVHid
+STEP06=RegValueString;System\\CurrentControlSet\\Services\\WacomVKHid
+STEP07=RegValueString;System\\CurrentControlSet\\Services\\WacomMouseFilter
+STEP08=Exist_;!SYSTEM!\\Drivers\\wacomhidfilter.sys;!RemoveHIDFilter64!
+STEP09=Exist_;!SYSTEM!\\Drivers\\wisdpen.sys;!RemoveWISDPen64!
+STEP10=DONE
+
+[RemoveFiles]
+STEP01=Command;!RemoveService!
+STEP02=Command;!RemoveCPL!
+STEP03=Command;!RemoveFUM!
+STEP04=1;DeleteFile;!SYSTEM!\\Tabins16.dll
+STEP05=1;DeleteFile;!SYSTEM!\\Tabinst.dll
+STEP06=1;DeleteFile;!SYSTEM!\\Tabunst.dll
+STEP07=DeleteFile;!Program Files!\\Tablet\\removeze.reg
+STEP08=RegValueString;Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Tablet Driver
+STEP09=RegValueString;\\SOFTWARE\\Wacom\\Wacom Tablet Driver
+STEP10=RegValueString;HKEY_USERS\\.Default\\Control Panel\\Wacom
+STEP11=DeleteFileReboot;!Program Files!\\Tablet\\Remove.exe
+STEP12=DeleteFileReboot;!Program Files!\\Tablet\\Installer.dat
+STEP13=DeleteFileReboot;!Program Files!\\Tablet\\Strings.dat
+STEP14=DeleteFileReboot;!Program Files!\\Tablet\\Common.dat
+STEP15=DeleteFileReboot;!Program Files!\\Tablet
+STEP16=DONE

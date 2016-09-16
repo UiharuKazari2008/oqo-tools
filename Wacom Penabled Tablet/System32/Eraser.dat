@@ -1,0 +1,43 @@
+[EraseData]
+STEP01=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Edit;4
+STEP02=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RichEdit;4
+STEP03=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RichEdit20A;4
+STEP04=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;OpusWwd;1
+STEP05=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL6;1
+STEP06=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL9;3
+STEP07=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;paneClassDC;6
+STEP08=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;WPDocClient;6
+STEP09=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;OpusApp;1
+STEP10=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;_WwG;3
+STEP11=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL7;3
+STEP12=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL<;1
+STEP13=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;PP97FrameClass;1
+STEP14=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Afx:400000:8;3
+STEP15=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EditControl;6
+STEP16=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;VsTextEditPane;3
+STEP17=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RICHEDIT50W;4
+STEP18=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Internet Explorer_Server;6
+STEP19=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;CodeMax;3
+STEP20=DONE
+
+[EraseDataInk]
+STEP01=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Edit;4
+STEP02=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RichEdit;4
+STEP03=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RichEdit20A;4
+STEP04=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;OpusWwd;
+STEP05=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL6;
+STEP06=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL9;
+STEP07=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;paneClassDC;6
+STEP08=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;WPDocClient;6
+STEP09=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;OpusApp;
+STEP10=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;_WwG;
+STEP11=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL7;
+STEP12=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EXCEL<;
+STEP13=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;PP97FrameClass;
+STEP14=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Afx:400000:8;3
+STEP15=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;EditControl;6
+STEP16=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;VsTextEditPane;3
+STEP17=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;RICHEDIT50W;4
+STEP18=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;Internet Explorer_Server;6
+STEP19=RegValueDWORD;HKEY_USERS\\.Default\\Control Panel\\Wacom\\Eraser;CodeMax;3
+STEP20=DONE

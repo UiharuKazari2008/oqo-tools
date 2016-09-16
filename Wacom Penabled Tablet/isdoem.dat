@@ -1,0 +1,4 @@
+#isdoem.dat
+[MAIN]
+ISDCOM_OVERRIDE=0
+SkipStartupIcon=1

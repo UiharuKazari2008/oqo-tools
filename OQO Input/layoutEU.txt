@@ -1,0 +1,9 @@
+[RegionalSettings]
+LanguageGroup = 1
+SystemLocale = 0809
+UserLocale = 0809
+UserLocale_DefaultUser = 0809
+InputLocale = 0809:a0000809
+InputLocale_DefaultUser = 0809:a0000809
+MUILanguage = 0809
+MUILanguage_DefaultUser = 0809
